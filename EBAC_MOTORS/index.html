@@ -185,28 +185,28 @@
     </section>
 
     <section>
-        <div class="container container-flex">
+        <div class="container">
             <h2>Entre em contato</h2>
             <form>
                 <div class="form-campo">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome">
+                    <input type="text" id="nome" name="nome">
                 </div>
                 <div class="form-campo">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone">
+                    <input type="tel" id="telefone" nome="telefone">
                 </div>
                 <div class="form-campo">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email">
+                    <input type="email" id="email" nome="email">
                 </div>
                 <div class="form-campo">
                     <label for="veiculo-interesse">Veículo de interesse:</label>
-                    <input type="text" id="veiculo-interesse">
+                    <input type="text" id="veiculo-interesse" nome="veiculo-interesse">
                 </div>
                 <div class="form-campo">
                     <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem"></textarea>
+                    <textarea id="mensagem" nome="mensagem"></textarea>
                 </div>
                 <button type="submit">Enviar</button>
             </form>
@@ -241,8 +241,10 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="./js/jquery.mask.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#carousel-imagens').slick({
                 autoplay: true,                
             });
@@ -250,8 +252,24 @@
             $('.menu-hamburguer').click(function() {
                 $('nav').slideToggle();
             })
+
+            $('#telefone').mask('(00) 00000-0000')
+
+            $('form').validate({
+                rules: {
+                    nome: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    telefone: {
+                        required: true
+                    }
+                }
+            })
         })
     </script>
 </body>
-
 </html>
